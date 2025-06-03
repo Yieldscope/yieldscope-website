@@ -1,5 +1,45 @@
+// Theme Management
+function initTheme() {
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Update theme toggle button state
+    updateThemeToggle(savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Update theme toggle button state
+    updateThemeToggle(newTheme);
+    
+    // Track theme change
+    trackEvent('theme_change', { theme: newTheme });
+}
+
+function updateThemeToggle(theme) {
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    if (themeBtn) {
+        themeBtn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+    }
+}
+
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize theme
+    initTheme();
+    
+    // Theme toggle event listener
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+    
     // Smooth scrolling for anchor links
     const links = document.querySelectorAll('a[href^="#"]');
     
@@ -42,6 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Please enter a valid email address.');
                 return;
             }
+            
+            // Track form submission
+            trackEvent('contact_form_submit', { 
+                name: name, 
+                email: email, 
+                theme: document.documentElement.getAttribute('data-theme') 
+            });
             
             // For now, just show a success message
             // In production, you would send this to a backend service
@@ -93,12 +140,62 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             link.style.color = '';
             if (link.getAttribute('href') === `#${current}`) {
-                link.style.color = '#2563eb';
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const accentColor = currentTheme === 'dark' ? '#ffffff' : '#000000';
+                link.style.color = accentColor;
             }
         });
     }
     
     window.addEventListener('scroll', highlightNavLink);
+    
+    // Logo error handling
+    const logoLight = document.getElementById('logo-light');
+    const logoDark = document.getElementById('logo-dark');
+    
+    if (logoLight) {
+        logoLight.addEventListener('error', function() {
+            console.warn('Light logo failed to load');
+            // Fallback to text logo
+            this.style.display = 'none';
+            this.parentElement.innerHTML += '<h2 style="color: var(--accent-color); font-size: 1.8rem; font-weight: 700;">YieldScope</h2>';
+        });
+    }
+    
+    if (logoDark) {
+        logoDark.addEventListener('error', function() {
+            console.warn('Dark logo failed to load');
+            // Fallback handled by light logo error handler
+        });
+    }
+    
+    // Keyboard accessibility for theme toggle
+    document.addEventListener('keydown', function(e) {
+        // Alt + T to toggle theme
+        if (e.altKey && e.key === 't') {
+            e.preventDefault();
+            toggleTheme();
+        }
+    });
+    
+    // System theme preference detection
+    if (window.matchMedia && !localStorage.getItem('theme')) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        if (prefersDark.matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            updateThemeToggle('dark');
+        }
+        
+        // Listen for changes in system preference
+        prefersDark.addEventListener('change', function(e) {
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                updateThemeToggle(newTheme);
+            }
+        });
+    }
     
     // Mobile menu toggle (for future implementation)
     // This is a placeholder for when we add a mobile hamburger menu
@@ -120,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function subscribeNewsletter(email) {
     // This would connect to your email service provider
     console.log('Newsletter signup for:', email);
+    trackEvent('newsletter_signup', { email: email });
     return Promise.resolve('Success');
 }
 
@@ -127,6 +225,8 @@ function subscribeNewsletter(email) {
 function trackEvent(eventName, eventData) {
     // Google Analytics tracking would go here
     console.log('Event tracked:', eventName, eventData);
+    
+    // Example: gtag('event', eventName, eventData);
 }
 
 // Performance monitoring
@@ -136,5 +236,8 @@ window.addEventListener('load', function() {
     console.log('Page load time:', loadTime + 'ms');
     
     // Track to analytics
-    trackEvent('page_load_time', { value: loadTime });
+    trackEvent('page_load_time', { 
+        value: loadTime,
+        theme: document.documentElement.getAttribute('data-theme')
+    });
 }); 
