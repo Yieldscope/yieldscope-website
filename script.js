@@ -1,3 +1,6 @@
+// Global navigation highlighting function
+let highlightNavLink;
+
 // Theme Management
 function initTheme() {
     // Check for saved theme preference or default to light mode
@@ -17,6 +20,11 @@ function toggleTheme() {
     
     // Update theme toggle button state
     updateThemeToggle(newTheme);
+    
+    // Refresh navigation highlighting with new theme
+    if (highlightNavLink) {
+        highlightNavLink();
+    }
     
     // Track theme change
     trackEvent('theme_change', { theme: newTheme });
@@ -127,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
     
-    function highlightNavLink() {
+    highlightNavLink = function() {
         let current = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100;
@@ -138,16 +146,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         navLinks.forEach(link => {
+            // Remove any active class and inline styles
+            link.classList.remove('nav-active');
             link.style.color = '';
             if (link.getAttribute('href') === `#${current}`) {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const accentColor = currentTheme === 'dark' ? '#ffffff' : '#000000';
-                link.style.color = accentColor;
+                // Add active class instead of inline styles
+                link.classList.add('nav-active');
             }
         });
-    }
-    
+    };
+
     window.addEventListener('scroll', highlightNavLink);
+    
+    // Call once initially to set proper state
+    highlightNavLink();
+    
+    // Clear any problematic inline styles on navigation links
+    navLinks.forEach(link => {
+        link.style.color = '';
+    });
     
     // Logo error handling
     const logoLight = document.getElementById('logo-light');
@@ -196,16 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // Mobile menu toggle (for future implementation)
-    // This is a placeholder for when we add a mobile hamburger menu
-    function createMobileMenu() {
-        // Mobile menu implementation would go here
-        console.log('Mobile menu functionality ready for implementation');
-    }
-    
-    // Initialize mobile menu
-    createMobileMenu();
     
     // Add loading animation
     window.addEventListener('load', function() {
