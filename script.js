@@ -71,105 +71,39 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Add your form submission logic here
-            alert('Thank you for your message! We will get back to you soon.');
-        });
-    }
-    
-    // Handle partner contact form submission
-    const partnerContactForm = document.getElementById('partner-contact-form');
-    if (partnerContactForm) {
-        partnerContactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
             
             // Get form data
-            const formData = new FormData(partnerContactForm);
-            const formValues = Object.fromEntries(formData);
+            const formData = new FormData(this);
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const message = this.querySelector('textarea').value;
             
             // Basic validation
-            if (!formValues['company-name'] || !formValues['contact-name'] || 
-                !formValues['contact-title'] || !formValues['contact-email'] || 
-                !formValues['company-type'] || !formValues['partnership-interest']) {
-                alert('Please fill in all required fields.');
+            if (!name || !email) {
+                alert('Please fill in your name and email address.');
                 return;
             }
             
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(formValues['contact-email'])) {
+            if (!emailRegex.test(email)) {
                 alert('Please enter a valid email address.');
                 return;
             }
             
-            // Show loading state
-            const submitBtn = partnerContactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            // Prepare data for Google Apps Script
-            const submissionData = {
-                companyName: formValues['company-name'],
-                contactName: formValues['contact-name'],
-                contactTitle: formValues['contact-title'],
-                contactEmail: formValues['contact-email'],
-                contactPhone: formValues['contact-phone'],
-                companyType: formValues['company-type'],
-                partnershipInterest: formValues['partnership-interest'],
-                message: formValues['message']
-            };
-            
-            // Submit to Google Apps Script
-            // REPLACE 'YOUR_DEPLOYED_SCRIPT_URL' WITH YOUR ACTUAL GOOGLE APPS SCRIPT WEB APP URL
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxSA8PsZyNB4wa90wUzJE7hsvS679AFmgQqUAqn99ZNhDFV32uQEETtmF6OrlrlCpyq/exec'; // Update this with your deployed script URL
-            
-            fetch(scriptUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(submissionData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Reset form
-                partnerContactForm.reset();
-                
-                // Reset button
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                
-                if (data.success) {
-                    // Show success message
-                    alert(`Thank you, ${formValues['contact-name']}! We've received your partnership inquiry from ${formValues['company-name']} and will get back to you within 24 hours. Please check your email for confirmation details.`);
-                    
-                    // Track successful submission
-                    trackEvent('partner_form_submission', {
-                        company_type: formValues['company-type'],
-                        partnership_interest: formValues['partnership-interest'],
-                        submission_method: 'google_apps_script'
-                    });
-                } else {
-                    throw new Error(data.error || 'Submission failed');
-                }
-            })
-            .catch(error => {
-                console.error('Form submission error:', error);
-                
-                // Reset button
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                
-                // Show error message
-                alert('Sorry, there was an error submitting your form. Please try again or contact us directly at partnerships@yieldscope.app');
-                
-                // Track failed submission
-                trackEvent('partner_form_error', {
-                    error: error.toString(),
-                    company_type: formValues['company-type'],
-                    partnership_interest: formValues['partnership-interest']
-                });
+            // Track form submission
+            trackEvent('contact_form_submit', { 
+                name: name, 
+                email: email, 
+                theme: document.documentElement.getAttribute('data-theme') 
             });
+            
+            // For now, just show a success message
+            // In production, you would send this to a backend service
+            alert('Thank you for your interest! We\'ll be in touch soon about early access to YieldScope.');
+            
+            // Reset form
+            this.reset();
         });
     }
     
