@@ -458,14 +458,18 @@ function showSuccessPopup(title, message, onClose = null) {
     
     closeBtn.addEventListener('click', closePopup);
     primaryBtn.addEventListener('click', closePopup);
-    secondaryBtn.addEventListener('click', () => {
-        closePopup();
-        // Scroll to contact section
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
+    
+    // Only add event listener if secondary button exists
+    if (secondaryBtn) {
+        secondaryBtn.addEventListener('click', () => {
+            closePopup();
+            // Scroll to contact section
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
     
     // Close on overlay click
     overlay.addEventListener('click', (e) => {
