@@ -734,7 +734,7 @@ async function submitPartnershipForm(data) {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxFjIdeZLIbn2OPBN1C5Tskgd2Xt1bG6Qe8JgMkEi64_20BUHu583RUrHxnmCb2_u29/exec';
     
     try {
-        // Add user agent for tracking
+        // Add userAgent as URL parameter to avoid CORS preflight issues
         data.userAgent = navigator.userAgent;
         
         // Create URL with parameters
@@ -747,12 +747,11 @@ async function submitPartnershipForm(data) {
         
         console.log('Submitting partnership form to:', url.toString());
         
+        // Use simple GET request to avoid CORS preflight
         const response = await fetch(url.toString(), {
             method: 'GET',
-            mode: 'cors',
-            headers: {
-                'User-Agent': navigator.userAgent
-            }
+            mode: 'cors'
+            // No custom headers to avoid preflight
         });
         
         if (!response.ok) {
