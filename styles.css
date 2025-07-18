@@ -742,6 +742,25 @@ body {
     align-items: center;
 }
 
+.footer-social {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.footer-social a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.7;
+}
+
+.footer-social a:hover {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.1);
+}
+
 .footer-brand h3 {
     color: var(--text-color);
     font-size: 1.8rem;
@@ -1037,6 +1056,23 @@ body {
         font-size: 0.95rem;
     }
     
+    .asset-classes-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .cards-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+    
+    .asset-card {
+        padding: 2rem;
+        max-width: 400px;
+        width: 100%;
+    }
+    
     .feature-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -1211,8 +1247,175 @@ body {
     object-fit: contain;
 }
 
+/* Asset Classes Layout */
+.asset-classes-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cards-container {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.asset-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px var(--shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1;
+    min-width: 220px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 380px;
+}
+
+.asset-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px var(--shadow-lg);
+    border-color: var(--accent-color);
+}
+
+.asset-card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    line-height: 1.2;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.asset-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.markets {
+    font-size: 0.75rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-weight: 500;
+    background: var(--section-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin: 0 auto 0.5rem auto;
+    display: inline-block;
+}
+
+.slogan {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    opacity: 0.8;
+}
+
+.rating-container {
+    margin-bottom: 1rem;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.rating-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+    min-width: 60px;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.star {
+    font-size: 0.9rem;
+    color: var(--border-color);
+    transition: color 0.2s ease;
+}
+
+.star.filled {
+    color: #fbbf24;
+}
+
+.check-out-link {
+    display: inline-block;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-top: auto;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.check-out-link:hover {
+    transform: translateX(4px);
+    color: var(--accent-hover);
+}
+
+.asset-card .feature-list {
+    margin: 0;
+}
+
+.asset-card .feature-list li {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
 /* Responsive Design for Product Section */
 @media (max-width: 1024px) {
+    .asset-classes-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .cards-container {
+        flex-direction: row;
+        gap: 1.5rem;
+        align-items: stretch;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .asset-card {
+        padding: 1.5rem;
+        max-width: 320px;
+        width: 100%;
+        min-width: 260px;
+    }
+    
     .product-section {
         gap: 40px;
         margin-bottom: 50px;
@@ -1324,6 +1527,19 @@ body {
         width: 380px;
         height: 285px;
         max-width: 85vw;
+    }
+    
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .asset-card {
+        max-width: 100%;
+        width: 100%;
+        min-width: auto;
+        margin: 0 1rem;
     }
 }
 
