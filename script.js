@@ -26,8 +26,6 @@ function toggleTheme() {
         highlightNavLink();
     }
     
-    // Track theme change
-    trackEvent('theme_change', { theme: newTheme });
 }
 
 function updateThemeToggle(theme) {
@@ -93,13 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Please enter a valid email address.');
                 return;
             }
-            
-            // Track form submission
-            trackEvent('contact_form_submit', { 
-                name: name, 
-                email: email, 
-                theme: document.documentElement.getAttribute('data-theme') 
-            });
             
             // For now, just show a success message
             // In production, you would send this to a backend service
@@ -273,14 +264,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Newsletter signup functionality (placeholder)
-function subscribeNewsletter(email) {
-    // This would connect to your email service provider
-    console.log('Newsletter signup for:', email);
-    trackEvent('newsletter_signup', { email: email });
-    return Promise.resolve('Success');
-}
-
 // Form message display function
 function showFormMessage(message, type = 'info') {
     // Remove any existing message
@@ -450,8 +433,6 @@ function showSuccessPopup(title, message, onClose = null) {
         firstButton.focus();
     }
     
-    // Track popup display
-    trackEvent('success_popup_shown', { title: title });
 }
 
 // Add popup styles
@@ -664,26 +645,6 @@ function addMessageAnimations() {
     }
 }
 
-// Analytics tracking (placeholder for Google Analytics)
-function trackEvent(eventName, eventData) {
-    // Google Analytics tracking would go here
-    console.log('Event tracked:', eventName, eventData);
-    
-    // Example: gtag('event', eventName, eventData);
-}
-
-// Performance monitoring
-window.addEventListener('load', function() {
-    // Track page load time
-    const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-    console.log('Page load time:', loadTime + 'ms');
-    
-    // Track to analytics
-    trackEvent('page_load_time', { 
-        value: loadTime,
-        theme: document.documentElement.getAttribute('data-theme')
-    });
-});
 
 
  

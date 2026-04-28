@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["GN35AWC2GF.app.yieldscope.consumer"],
+        "components": [
+          { "/": "/products/*" }
+        ]
+      }
+    ]
+  }
+}
