@@ -4,8 +4,7 @@
       {
         "appIDs": ["GN35AWC2GF.app.yieldscope.consumer"],
         "components": [
-          { "/": "/products/*" },
-          { "/": "/product-detail/*" }
+          { "/": "/products/*" }
         ]
       }
     ]
