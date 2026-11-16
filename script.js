@@ -10,7 +10,13 @@ function setTheme(theme){
   const brandLogo=document.querySelector('.brand img');
   if(brandLogo)brandLogo.src=`asset/logo-${theme}.png`;
 }
-try{setTheme(localStorage.getItem('theme')==='dark'?'dark':'light')}catch{setTheme('light')}
+const prefersDark=matchMedia('(prefers-color-scheme: dark)');
+let storedTheme=null;try{storedTheme=localStorage.getItem('theme')}catch{}
+setTheme(storedTheme||(prefersDark.matches?'dark':'light'));
+prefersDark.addEventListener('change',e=>{
+  let saved=null;try{saved=localStorage.getItem('theme')}catch{}
+  if(!saved)setTheme(e.matches?'dark':'light');
+});
 if(themeButton)themeButton.addEventListener('click',()=>{
   const next=document.documentElement.dataset.theme==='light'?'dark':'light';setTheme(next);
   try{localStorage.setItem('theme',next)}catch{}
