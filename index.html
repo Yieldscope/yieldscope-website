@@ -1,160 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="YieldScope — compare bank deposit rates, bond yields, and dividend stocks in Hong Kong. Side by side, in one app.">
-    <meta name="keywords" content="yield, deposit rate, bond, dividend, Hong Kong, HK, compare, fixed deposit">
-    <title>YieldScope — Compare HK Yields</title>
-    <link rel="icon" type="image/x-icon" href="asset/ys_logo_light_mode.png">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles-legal.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="YieldScope — compare bank deposit rates, bond yields, and dividend stocks in Hong Kong. Side by side, in one app.">
+<meta name="keywords" content="yield, deposit rate, bond, dividend, Hong Kong, HK, compare, fixed deposit">
+<title>YieldScope — Compare HK Yields</title>
+<link rel="icon" type="image/x-icon" href="asset/ys_logo_light_mode.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="asset/ys_logo_dark_mode.png" alt="YieldScope Logo" class="logo logo-light" id="logo-light">
-                <img src="asset/ys_logo_light_mode.png" alt="YieldScope Logo" class="logo logo-dark" id="logo-dark">
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home">YieldScope</a></li>
-                <li><a href="#product">What's inside</a></li>
-                <li><a href="#footer">Contact</a></li>
-            </ul>
-            <div class="theme-toggle">
-                <button id="theme-toggle-btn" class="theme-btn" aria-label="Toggle theme">
-                    <span class="sun-icon">☀</span>
-                    <span class="moon-icon">☾</span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Compare HK yields, side by side.</h1>
-                <p>YieldScope is an information-comparison tool for Hong Kong: bank time deposits, bonds, and dividend stocks. No account. No fees. Indicative rates only — always verify with the provider before deciding.</p>
-                <div class="hero-buttons">
-                    <a href="#product" class="btn btn-primary">
-                        See what's inside
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="phone-mockup">
-                    <img src="asset/home_page_light_mode_with_frame_transparent.png" alt="YieldScope home screen" class="phone-complete phone-light" id="phone-light">
-                    <img src="asset/home_page_dark_mode_transparent.png" alt="YieldScope home screen — dark mode" class="phone-complete phone-dark" id="phone-dark">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Product Overview -->
-    <section id="product" class="product-overview">
-        <div class="container">
-            <div class="product-intro">
-                <h2>What's inside</h2>
-            </div>
-
-            <div class="product-section-full">
-                <div class="product-text-centered">
-                    <h3>Three asset classes, one comparison view</h3>
-                    <p>YieldScope aggregates publicly available yield information so you can compare at a glance. We are not a broker, advisor, or deposit-taker — we don't sell anything.</p>
-
-                    <div class="asset-classes-layout">
-                        <div class="cards-container">
-                            <div class="asset-card">
-                                <h4>Bank time deposits</h4>
-                                <div class="asset-details">
-                                    <p class="markets">HK banks: HSBC, Standard Chartered, BOC, Citi, DBS, and more</p>
-                                    <p class="slogan">"Compare promotional rates and terms across major banks."</p>
-                                    <a href="#footer" class="check-out-link">Indicative · verify with bank</a>
-                                </div>
-                            </div>
-
-                            <div class="asset-card">
-                                <h4>Bonds</h4>
-                                <div class="asset-details">
-                                    <p class="markets">HK government and corporate issues</p>
-                                    <p class="slogan">"Coupon, tenor, and currency — at a glance."</p>
-                                    <a href="#footer" class="check-out-link">Indicative · verify with issuer</a>
-                                </div>
-                            </div>
-
-                            <div class="asset-card">
-                                <h4>Dividend stocks</h4>
-                                <div class="asset-details">
-                                    <p class="markets">HK blue-chip equities</p>
-                                    <p class="slogan">"See dividend yields without setting up a brokerage account."</p>
-                                    <a href="#footer" class="check-out-link">Past performance ≠ future results</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-image">
-                            <div class="phone-mockup phone-mockup-small">
-                                <img src="asset/pdp_light_mode_transparent_alternate.png" alt="YieldScope product detail" class="phone-complete phone-light" id="pdp-light">
-                                <img src="asset/pdp_dark_mode_transparent_alternate.png" alt="YieldScope product detail — dark mode" class="phone-complete phone-dark" id="pdp-dark">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Privacy-first -->
-            <div class="product-section reverse">
-                <div class="product-text">
-                    <h3>Your data stays yours</h3>
-                    <p>YieldScope is built privacy-first. The app collects nothing.</p>
-                    <ul class="feature-list">
-                        <li><strong>No account required.</strong> Open the app and you're in.</li>
-                        <li><strong>No analytics, no tracking.</strong> No third-party tracking SDKs of any kind.</li>
-                        <li><strong>Your watchlist stays on your device.</strong> Nothing is uploaded.</li>
-                        <li><strong>HTTPS-only.</strong> All rate data is fetched securely from our backend.</li>
-                        <li><strong>No advertising identifiers.</strong> No IDFA, no cross-app tracking.</li>
-                    </ul>
-                    <p>See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- Footer -->
-    <footer id="footer" class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>YieldScope</h3>
-                    <p>Compare yields across HK banks, bonds, and dividend stocks.</p>
-                    <div class="footer-contact">
-                        <div class="footer-email-wrapper">
-                            <svg class="email-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <a href="mailto:support@yieldscope.app" class="footer-email">support@yieldscope.app</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="support.html">Support</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 YieldScope. All rights reserved. | <a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header wrap"><a class="brand" href="#main" aria-label="YieldScope home"><img src="asset/logo-light.png" alt="" width="34" height="34"><span>YieldScope</span></a><nav class="main-nav" aria-label="Main navigation"><a href="#explore">Try a comparison</a><a href="#privacy">Privacy</a></nav><div class="header-actions"><button class="icon-button" id="theme" aria-label="Switch to dark mode" title="Switch to dark mode"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button><a class="header-download" href="https://apps.apple.com/hk/app/id6764265537">Get the app<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div></header>
+<main id="main">
+<section class="hero wrap" id="home" aria-labelledby="hero-heading"><div class="hero-title"><h1 id="hero-heading">Put the yield<br>in context.</h1><div class="hero-copy"><p>Bank deposits, bonds, dividend stocks.<br>See the rate. Understand the conditions.<br>Make your own comparison.</p><a class="button primary" href="https://apps.apple.com/hk/app/id6764265537">Explore YieldScope for iPhone<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><p class="small">No account. No fees. No tracking.</p></div></div>
+<div class="comparison" id="explore"><div class="comparison-heading"><h2>Look beyond the headline rate.</h2><span class="demo-label">Interactive example · not live rates</span></div><div class="table-tools"><div class="filters" role="group" aria-label="Choose an asset class"><button type="button" data-category="deposits" aria-pressed="true">Bank deposits</button><button type="button" data-category="bonds" aria-pressed="false">Bonds</button><button type="button" data-category="stocks" aria-pressed="false">Dividend</button></div><span class="market-note">Fictional products, HKD</span></div>
+<table><caption class="sr-only">Fictional products for demonstrating the comparison. Select a product to read its conditions. These are not current offers.</caption><thead><tr><th scope="col">Product</th><th scope="col" aria-sort="descending" id="yield-heading"><button id="sort" aria-label="Sort yield from lowest to highest">Yield p.a.<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 3v10m-4-4 4 4 4-4"/></svg></button></th><th scope="col" class="term-column">Term</th><th scope="col" class="condition-column">A condition to check</th><th scope="col"><span class="sr-only">Product details</span></th></tr></thead><tbody id="products"></tbody></table>
+<div class="product-detail" id="product-detail" role="status" aria-live="polite"></div><p class="example-note">Sample figures show how comparison works. Different asset classes carry different risks; their yields are not equivalent.</p></div>
+<p class="provider-note">YieldScope is an information-comparison tool, not a broker, advisor or deposit-taker. Always confirm rates and conditions with the provider.</p></section>
+<section class="context wrap" id="product" aria-labelledby="context-heading"><div class="section-intro"><h2 id="context-heading">Same screen.<br>Different questions.</h2><p>A percentage is a starting point, not the whole picture. Keep the details that matter beside the number.</p></div><div class="asset-stories"><article><h3>Bank time deposits</h3><div><p>A rate has a currency, a term and conditions attached. Compare those before you commit your cash.</p><ul><li>Deposit term</li><li>Minimum amount</li><li>Promotional conditions</li></ul></div></article><article><h3>Bonds</h3><div><p>A coupon alone does not tell you the return. Consider the price, maturity and the issuer’s ability to repay.</p><ul><li>Coupon</li><li>Maturity</li><li>Issuer and currency</li></ul></div></article><article><h3>Dividend stocks</h3><div><p>Dividend yield reflects past payouts relative to price. Neither future dividends nor your capital are guaranteed.</p><ul><li>Dividend yield</li><li>Past payouts</li><li>Share price</li></ul></div></article></div></section>
+<section class="app-section"><div class="wrap app-layout"><div class="app-copy"><h2>A little less searching.<br>A lot more perspective.</h2><p>Explore yield information across Hong Kong and US markets. Filter the view, look into a product and keep a watchlist on your device.</p><a class="text-link" href="https://apps.apple.com/hk/app/id6764265537">View YieldScope on the App Store<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><p class="small screenshot-note">App Store screen, shown as a snapshot.<br>Displayed products and figures are not live offers.</p></div><figure class="screen-stage"><img class="app-screen" src="asset/home-screen.png" alt="YieldScope comparison screen with product search, asset filters and yield information" width="584" height="1264" loading="lazy"><figcaption>Compare. Look closer. Keep what matters.</figcaption></figure></div></section>
+<section class="privacy wrap" id="privacy"><h2>Your comparisons.<br>Not our data.</h2><div class="privacy-facts"><article><h3>No sign-up</h3><p>Open the app and start exploring. There is no account to create.</p></article><article><h3>No tracking</h3><p>No analytics or third-party tracking SDKs in the app.</p></article><article><h3>Your device</h3><p>Your watchlist stays on your device. Nothing is uploaded.</p></article></div><a class="text-link" href="privacy.html">Read the Privacy Policy</a></section>
+<section class="faq wrap"><h2>A few things to know.</h2><div><details><summary>Are these rates available to me?</summary><p>Rates in YieldScope are indicative. Eligibility, minimum amounts, currencies and terms vary by provider. Confirm the current offer directly before making a decision. The interactive examples on this page are fictional.</p></details><details><summary>Does YieldScope sell investment products?</summary><p>No. YieldScope is an information-comparison tool. It is not a broker, financial advisor or deposit-taker and does not execute transactions.</p></details><details><summary>Can I compare a dividend yield with a deposit rate?</summary><p>You can view both, but they mean different things. A dividend may change and a share price can fall. A deposit rate is subject to its own conditions. Similar percentages do not mean similar risks.</p></details><details><summary>Do I need an account?</summary><p>No account or sign-up is required. Your watchlist is stored locally on your device.</p></details></div></section>
+<section class="closing wrap"><h2>Make room for<br>a clearer comparison.</h2><div><a class="button primary" href="https://apps.apple.com/hk/app/id6764265537">Get YieldScope for iPhone<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><p class="small">Free to explore. No account required.</p></div></section>
+</main><footer class="wrap footer" id="footer"><a class="brand" href="#main">YieldScope</a><p>Information, not investment advice.</p><nav aria-label="Footer"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="support.html">Support</a><a href="mailto:support@yieldscope.app">Contact</a></nav><p class="copyright">© 2026 YieldScope. All rights reserved.</p></footer>
+</body></html>
